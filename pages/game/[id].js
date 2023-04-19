@@ -3,6 +3,69 @@ import {games} from "@/file";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import LogoBox from '@/components/LogoBox';
+import styled from 'styled-components';
+
+const Container = styled.div`
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 992px){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+`;
+
+const SliderBox = styled.div`
+    width: 50%;
+
+    @media (max-width: 992px){
+        width: 100%;
+    }
+`;
+
+const GameBox = styled.div`
+    padding: 20px 0;
+
+    & > h3{
+        font-weight: 700;
+        font-size: 1.8rem;
+    }
+
+    & > p{
+        margin-top: 40px;
+        font-size:1.2rem;
+        letter-spacing: 1px;
+    }
+
+    @media (max-width: 480px){
+        & > h3{
+            font-weight: 700;
+            font-size: 1.6rem;
+        }
+    
+        & > p{
+            margin-top: 20px;
+            font-size:1.2rem;
+            letter-spacing: 1px;
+        }
+    }
+`;
+
+const Character = styled.div`
+    font-size: .9rem;
+    color: #f9d922;
+`;
+
+const Date = styled(Character)`
+    margin: 5px 0;
+`;
+
+const Raite = styled(Character)`
+    margin-bottom: 15px;
+`;
 
 function Game({game}) {
     
@@ -11,8 +74,8 @@ function Game({game}) {
         title="Большая база компютерных игр | GaminSoft" 
         description="Большая база компютерных игр | GaminSoft"
         >
-            <div className="game-item-container">
-                <div className="game-item-slider">
+            <Container>
+                <SliderBox>
                     <Carousel 
                         dynamicHeight={false} 
                         showIndicators={false}
@@ -24,15 +87,15 @@ function Game({game}) {
                             </div>
                         )}    
                     </Carousel>
-                </div>
-                <div className="game-item-description">
+                </SliderBox>
+                <GameBox>
                     <h3>{game?.name}</h3>
                     <p>{game?.description}</p>
-                    <div className="date">Дата: {game.date}</div>
-                    <div className="rating">Рейтинг: {game.rating}</div>
+                    <Date>Дата: {game.date}</Date>
+                    <Raite>Рейтинг: {game.rating}</Raite>
                     <LogoBox logos={game.platform} />
-                </div>
-            </div>
+                </GameBox>
+            </Container>
         </Layout>
     );
 }

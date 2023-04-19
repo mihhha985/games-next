@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Layout from "@/components/Layout";
 import {games} from "@/file";
 import SortPanel from '@/components/SortPanel';
@@ -28,19 +28,19 @@ export default function Home({game}) {
           globalState = false;
       },600)
     }
-  }
+  };
 
   const clear = () => {
     setGameList(game);
   }
 
   const sortPlatform = (platform) => {
-    let sortGameList = game.filter(item => item.platform.includes(platform));
+    let sortGameList = gameList.filter(item => item.platform.includes(platform));
     setGameList(sortGameList);
   }
 
   const searchGame = (value) => {
-    let searchGameList = game.filter(item => item.name.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+    let searchGameList = gameList.filter(item => item.name.toLowerCase().indexOf(value.toLowerCase()) !== -1);
     setGameList(searchGameList);
   }
 

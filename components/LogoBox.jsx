@@ -3,6 +3,12 @@ import { FaPlaystation, FaXbox } from "react-icons/fa";
 import {BsApple} from 'react-icons/bs';
 import {VscTerminalLinux} from 'react-icons/vsc';
 import {SiNintendo} from 'react-icons/si';
+import styled from "styled-components";
+
+const Logo = styled.div`
+    display: flex;
+    column-gap: 5px;
+`;
 
 const platform = [
     {name: "PC", icon:  <AiFillWindows size={18} color={'#ffffff'} />}, 
@@ -16,12 +22,12 @@ const platform = [
 function LogoBox({logos}) {
 
     return ( 
-        <div className="logo-box">
+        <Logo>
             {platform.map((item,key) => {
                 if(logos.includes(item.name))
                     return <span key={key}>{item.icon}</span>;
             })}
-        </div>
+        </Logo>
     );
 }
 
